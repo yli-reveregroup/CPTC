@@ -1,0 +1,5 @@
+name = Amazon S3
+description = Provides an API for Amazon's Simple Storage Service
+core = 7.x
+files[] = amazon_s3.module
+files[] = amazon_s3.css

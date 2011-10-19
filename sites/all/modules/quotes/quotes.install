@@ -1,0 +1,30 @@
+<?php
+
+
+/**
+ * @file
+ * Defines schema for quotes
+ */
+
+/**
+ * Implements hook_field_schema().
+ */
+function quotes_install(){
+    db_query("CREATE TABLE {quotes}(
+        qid int not null auto_increment,
+        quote text,
+        author varchar(255),
+        PRIMARY KEY(qid)
+    )/*!40100 DEFAULT CHARACTER SET utf8*/");
+
+    db_query("CREATE TABLE {quotes_rating}(
+        qid int not null auto_increment,
+        ups int,
+        downs int,
+        PRIMARY KEY(qid)
+        )/*!40100 DEFAULT CHARACTER SET utf8*/");
+}
+function quotes_uninstall(){
+    db_query("DROP TABLE {quotes}");
+    db_query("DROP TABLE {quotes_rating}");
+}

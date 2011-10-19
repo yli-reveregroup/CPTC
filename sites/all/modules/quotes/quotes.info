@@ -1,0 +1,14 @@
+name = Favorite Quotes
+description = Allows the users to view my favorite quotes.
+core = 7.x
+package = Favorites
+
+files[] = quotes.module
+; files[] = quotes.install
+
+; Information added by drupal.org packaging script on 2011-08-18
+version = "7.x-1.0"
+core = "7.x"
+project = "quotes"
+datestamp = "1313666247"
+

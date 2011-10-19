@@ -1,0 +1,156 @@
+<?php
+// $Id$
+
+function amazon_s3_schema() {
+  $schema['amazon_s3_logs'] = array(
+    'description' => 'A table to store Amazon S3 logs.', 
+    'fields' => array(
+      'bucket_owner' => array(
+        'description' => 'The bucket owner.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'bucket' => array(
+        'description' => 'The bucket name.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'date_time' => array(
+        'description' => 'The date time of the log.',
+        'type' => 'int',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'remote_ip' => array(
+        'description' => 'The remote ip of the requester.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'requester' => array(
+        'description' => 'The requester name.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'request_id' => array(
+        'description' => 'Amazons unique request id.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'operation' => array(
+        'description' => 'The type of operation.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'key_param' => array(
+        'description' => 'The key.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'request_method' => array(
+        'description' => 'The request method.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'request_uri' => array(
+        'description' => 'The request uri.',
+        'type' => 'varchar',
+        'length' => 256,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'request_protocol' => array(
+        'description' => 'The request protocol.',
+        'type' => 'varchar',
+        'length' => 64,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'http_status' => array(
+        'description' => 'The http status code.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'error_code' => array(
+        'description' => 'The error code.',
+        'type' => 'varchar',
+        'length' => 32,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'bytes_sent' => array(
+        'description' => 'Bytes sent to user.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'object_size' => array(
+        'description' => 'The size of the object.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'total_time' => array(
+        'description' => 'The total time of transfer.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'turn_around_time' => array(
+        'description' => 'The turn-around time of transfer.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'referrer' => array(
+        'description' => 'The referrer.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'user_agent' => array(
+        'description' => 'The user agent.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'version_id' => array(
+        'description' => 'The version id.',
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ), 
+    'indexes' => array(
+      'bucket' => array('bucket'), 
+      'date_time' => array('date_time'), 
+      'operation' => array('operation'),
+      'request_uri' => array('request_uri'),
+      'operation' => array('operation'),
+    ), 
+    'primary key' => array('request_id'),
+  );
+  
+  return $schema;
+}

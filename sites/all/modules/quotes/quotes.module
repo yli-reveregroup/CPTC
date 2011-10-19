@@ -1,0 +1,72 @@
+<?php
+
+function quotes_menu(){
+   // $items =array();
+    $items[]= array(
+        'path' =>'admin/settings/favorites/quotes',
+        'title'=> t('Manage Favorite Quotes'),
+        'description' => t('Add more favorite quptes'),
+        'callback' => 'drupal_get_form',
+        'callback arguements' => 'quotes_settings',
+        'access' => user_access('access admin pages')
+    );
+    return items;
+}
+function quotes_settings(){
+    $form["quotes_manage"]=array(
+        '#type' =>'fieldset',
+        '#title' => t("Add a new quotes"),
+        '#tree' => TRUE
+    );
+    $form["quotes_manage"]["quote"]=array(
+        '#type' =>'textfield',
+        '#title' => t("Enter a quote"),
+        '#default_value'=>variable_get('quote',''),
+        '#description' => t("Enter quote that is your favorites")
+    );
+    
+    $form["quotes_manage"]["author"]=array(
+        '#type' =>'textfield',
+        '#title' => t("Enter the author"),
+        '#default_value'=>variable_get('author',''),
+        '#description' => t("Enter author of this quote")
+    );
+    $form["quotes_manage"]["comment"]=array(
+        '#type' =>'textarea',
+        '#title' => t("Enter a comment"),
+        '#default_value'=>variable_get('comment',''),
+        '#cols' => 60,
+        '#rows' => 5,
+        '#description' => t("Enter comment of this quote")
+    );
+    
+    $year = array('1' => t('Contemporary quote'), '0' => t('Ancient quote'));
+    $form["quotes_manage"]["year"]=array(
+        '#type' =>'radio',
+        '#title' => t("The Year"),
+        '#options'=> $year,
+        '#description' => t("Choose the year the quote belongs")
+    );
+    
+    $county = drupal_map_assoc(array("Britain","China", "Egypt","German", "Greek", "India","Isareal","Japan","Rome","USA", "Others"), 'format_interval');
+    $form["quotes_manage"]["country"]=array(
+        '#type' =>'select',
+        '#title' => t("The Country"),
+        '#options'=> country,
+        '#description' => t("Select where the quote is from")
+    );
+    $usage = array('0' => t('To Coworker'), '1' => t('To Spouse'),'2' => t('To Friend'), '3' => t('To Child'), '4' => t('To Parent'));
+    $form["quotes_manage"]["usage"]=array(
+        '#type' =>'checkbox',
+        '#title' => t("To particular people"),
+        '#options'=> $usage,
+        '#description' => t("Choose the people to whom the quote should be applied")
+    );
+    $form["#submit"] = array("quotes_get_form"=>arrary());
+    return system_settings_form($form);
+}
+
+function quotes_get_form($form_id, $form_values){
+    drupal_set_message(t("Submitted!"));
+}
+?>

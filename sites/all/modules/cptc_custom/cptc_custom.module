@@ -1,0 +1,46 @@
+<?php
+include('cptc_series.inc');
+include('cptc_menu.inc');
+
+function hook_permission(){
+  return array(
+    'access captain functions' => array(
+      'title' => 'Access Captain Functions',
+      'description' => 'Functions that only captains have access to'
+    ),
+  );
+}
+
+function hook_perm(){
+  return array('access captain functions');
+}
+
+
+function cptc_custom_init(){
+  
+}
+
+function cptc_custom_cron(){
+  
+}
+
+function cptc_custom_test_form($form, $form_state, $var){
+  $form['field_name'] = array(
+    '#type' => 'markup',
+    '#markup' => $var
+  );
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Submit'),
+    '#validate' => array('output_hw_form_validate'),
+    '#submit' => array('output_hw_form_submit'),
+  );
+  return $form;
+  
+}
+
+function cptc_custom_score_entry_form($form, $form_state, $teamnumber, $gameid){
+  $form['test'] = array('#type'=>'markup', '#value'=>'hello world');
+  return $form;
+}
